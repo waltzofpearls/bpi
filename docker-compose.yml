@@ -1,0 +1,15 @@
+mysql:
+  image: mysql:5.6
+  environment:
+    - MYSQL_USER=dbuser
+    - MYSQL_PASSWORD=dbpass
+    - MYSQL_DATABASE=dbname
+    - MYSQL_ROOT_PASSWORD=rtpass
+php:
+  build: ./php/
+  ports:
+    - "9000:80"
+  volumes:
+    - ./:/var/www/html/
+  links:
+    - mysql:mysql
